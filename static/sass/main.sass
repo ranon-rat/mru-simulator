@@ -1,0 +1,81 @@
+@import normalize
+
+@import models/newGrid
+
+* 
+  color: #838d96
+
+  ::-webkit-scrollbar
+    width: 10px
+
+  ::-webkit-scrollbar-track
+    background: #090c11
+
+  ::-webkit-scrollbar-thumb
+    background: #131a24
+
+  ::-webkit-scrollbar-thumb:hover
+    background: #1a2431
+
+
+div#mainGrid
+  @include newGrid(false, 100%, (60px auto), ("header" "main"))
+
+  background-color: #0c1117
+
+  header
+    @include newGrid(header, 100%, 100%, "cont")
+
+    background-color: #010409
+    border-bottom: solid 1px #2f363d
+
+    div
+      @include newGrid(cont, repeat(2, 120px), 100%, ("start velocity"))
+  
+      align-items: center
+      justify-content: center
+      column-gap: 30px
+
+
+      button
+        grid-area: start
+
+        background: transparent
+        border: solid 1px #2f363d
+        border-radius: 5px
+        height: 40px
+
+      input[type=number]
+        grid-area: velocity
+
+        background: transparent
+        border: solid 1px #2f363d
+        border-radius: 5px
+        height: 36.1px
+        outline: none
+        text-align: center
+
+        -moz-appearance: textfield
+      
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button
+        -webkit-appearance: none
+      
+
+
+      button:hover, input:hover
+        border: solid 1px #bec7cf
+
+  main
+    @include newGrid(main, 100%, 100%, "canvas")
+
+    height: 100vh
+    align-items: center
+    justify-content: center
+    text-align: center
+
+    canvas#canvas
+      grid-area: canvas
+
+      margin: auto
+      height: 400px

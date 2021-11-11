@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>movimiento rectilineo uniforme</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>movimiento rectilineo uniforme</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script src="JS/index.js" type="module"></script>
 </head>
+
 <body>
-    <h1>movimiento rectilineo uniforme</h1>
-    <canvas id="canvas" width="500" height="500" style="float:left"></canvas>
-   
-    <input type="number" id="velocity" placeholder="velocity">
-    
-    <script src="script/index.js" type="module"></script> 
+  <div id="mainGrid">
+    <header>
+      <div>
+        <button id="init">Start</button>
+        <input type="number" id="velocity" placeholder="velocity" value="20"/>
+      </div>
+    </header>
+
+    <main>
+      <canvas id="canvas"></canvas>
+    </main>
+  </div>
 </body>
+
 </html>
