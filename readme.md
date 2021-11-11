@@ -1,6 +1,8 @@
 # mru simulator
 <p align="center">
-![english]("#english")|![español]("#español")
+  
+[english]("#english")|[español]("#español")
+
 </p>
 <div id="english">
 
