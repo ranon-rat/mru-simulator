@@ -3,7 +3,7 @@ export class car {
 
   private x: number = -100;
   private scale: number = 17;
-  distance:number=500;
+  distance:number=1000;
 
   constructor(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, velocity: number) {
     this.velocity = velocity;
@@ -21,14 +21,15 @@ export class car {
 
 
     image.src = "img/car.png"
-
+    let height= (image.height / (this.scale))/(this.distance/1000)
+    let width=(image.width / (this.scale))/(this.distance/1000)
 
     ctx.drawImage(
-      image, this.x, canvas.height - image.height / this.scale, (image.width / (this.scale))/(this.distance/1000),
+      image, this.x-width, canvas.height -height,width,
       (image.height / (this.scale))/(this.distance/1000)
     );
 
-    if (this.x > this.distance) this.x = -100;
+    if (this.x > this.distance+width) this.x = -100;
 
     setTimeout(() => {
       requestAnimationFrame(this.movement.bind(this, ctx, canvas))
