@@ -13,6 +13,7 @@ export class car {
 
   public movement(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): void {
     
+    ctx.fillStyle = "#000"
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     let image = new Image();
     image.src = "img/car.png"
@@ -23,9 +24,7 @@ export class car {
     let height= (image.height / (this.scale))/(this.distance/1000)
     let width=(image.width / (this.scale))/(this.distance/1000)
     
-    
-    
-    ctx.fillStyle = "#000"
+
     
     
     
