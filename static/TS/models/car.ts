@@ -1,44 +1,58 @@
 export class car {
-  public velocity: number = 40;//meters per second
+  public velocity: number = 40; //meters per second
 
-  private x: number = -100;
+  // El resultado del modelo siempre sera el mismo, así que lo deje así.
+  // El readonly para cambiar el valor unicamente durante el constructor.
+  private readonly carModel: HTMLImageElement = new Image();
+
+  // Lo agregue aquí para no inicializarlo a cada rato.
+  private ctx: CanvasRenderingContext2D;
+
+  private distance: number = 500;
   private scale: number = 17;
-  distance:number=500;
+  private x: number = -100;
 
-  constructor(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement, velocity: number) {
+
+  public constructor(
+    context: CanvasRenderingContext2D,
+    canvas: HTMLCanvasElement,
+    velocity: number
+  ) {
     this.velocity = velocity;
-    this.movement(ctx, canvas);
+    this.carModel.src = "img/car.png";
 
+    this.ctx = context;
+    this.ctx.fillStyle = "#000";
+
+    this.updateAnimation(canvas);
   }
 
-  public movement(ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement): void {
-    
-    ctx.fillStyle = "#000"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    let image = new Image();
-    image.src = "img/car.png"
-    
-    // esto solo es para escalarlo de mejor manera
+  private updateAnimation(canvas: HTMLCanvasElement): void {
+    // Esto se podría llegar a actualizar, así que lo deje así.
+    this.ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    this.x += (this.velocity*(canvas.width/this.distance))/100;// la velocidad esta en metros por segundo , en un segundo hay 100 frames asi que lo divido entre 100 ya que un segundo tiene 1000 milisegundos 
-    let height= (image.height / (this.scale))/(this.distance/1000)
-    let width=(image.width / (this.scale))/(this.distance/1000)
-    
+    // Esto solo es para escalarlo de mejor manera.
+    // La velocidad esta en metros por segundo, en un segundo hay 100 frames asi que lo divido entre 100 ya que un segundo tiene 1000 milisegundos.
+    this.x += ((this.velocity * (canvas.width / this.distance)) / 100);
 
-    
-    
-    
-    ctx.drawImage(
-      image, this.x-width, canvas.height -height,width,
-      (image.height / (this.scale))/(this.distance/1000)
+
+    let height: number = ((this.carModel.height / this.scale) / (this.distance / 1000)),
+      width: number = ((this.carModel.width / this.scale) / (this.distance / 1000));
+
+
+    this.ctx.drawImage(
+      this.carModel,
+      (this.x - width),
+      (canvas.height - height),
+      width,
+      ((this.carModel.height / this.scale) / (this.distance / 1000))
     );
 
-    if (this.x > this.distance+width) this.x = -100;
 
-    setTimeout(() => {
-      requestAnimationFrame(this.movement.bind(this, ctx, canvas))
-    }, 10)
+    if (this.x > (this.distance + width)) this.x = -100;
 
+
+    // Le elimine los "{}"
+    setTimeout((): number => requestAnimationFrame(this.updateAnimation.bind(this, canvas)), 10);
   }
-
 }
