@@ -1,5 +1,10 @@
 export class car {
-  public velocity: number = 40; //meters per second
+  public distance: number;
+  public velocity: number; //meters per second
+
+  public distanceTraveled = document.getElementById("distanceTraveled")!
+  public timeElapsed = document.getElementById("timeElapsed")!
+  public parked: boolean = true;
 
   // El resultado del modelo siempre sera el mismo, así que lo deje así.
   // El readonly para cambiar el valor unicamente durante el constructor.
@@ -8,16 +13,17 @@ export class car {
   // Lo agregue aquí para no inicializarlo a cada rato.
   private ctx: CanvasRenderingContext2D;
 
-  private distance: number = 500;
   private scale: number = 17;
-  private x: number = -100;
+  private x: number = 0;
 
 
   public constructor(
     context: CanvasRenderingContext2D,
     canvas: HTMLCanvasElement,
+    distance: number,
     velocity: number
   ) {
+    this.distance = distance;
     this.velocity = velocity;
     this.carModel.src = "img/car.png";
 
@@ -35,9 +41,13 @@ export class car {
     // La velocidad esta en metros por segundo, en un segundo hay 100 frames asi que lo divido entre 100 ya que un segundo tiene 1000 milisegundos.
     this.x += ((this.velocity * (canvas.width / this.distance)) / 100);
 
-
     let height: number = ((this.carModel.height / this.scale) / (this.distance / 1000)),
       width: number = ((this.carModel.width / this.scale) / (this.distance / 1000));
+
+    if (!this.parked) {
+      this.distanceTraveled.setAttribute("value", String(this.x))
+      this.timeElapsed.setAttribute("value", String((this.x / this.velocity)))
+    }
 
 
     this.ctx.drawImage(
@@ -49,10 +59,11 @@ export class car {
     );
 
 
-    if (this.x > (this.distance + width)) this.x = -100;
+    if (this.x > (this.distance + width)) this.x = 0;
 
 
-    // Le elimine los "{}"
-    setTimeout((): number => requestAnimationFrame(this.updateAnimation.bind(this, canvas)), 10);
+    setTimeout(() => {
+      requestAnimationFrame(this.updateAnimation.bind(this, canvas))
+    }, 1);
   }
 }
