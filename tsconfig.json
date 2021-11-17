@@ -2,20 +2,24 @@
   "compilerOptions": {
     /* Language and Environment */
     "target": "es5",
-    //"lib": ["DOM"],
-
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2015",
+      "ES2015.Promise"
+    ],
 
     /* Modules */
     "module": "es2015",
-    "rootDir": "./static/TS",
-    "moduleResolution": "node",
+    "rootDir": "developing/TS",
+    "moduleResolution": "classic",
     // "resolveJsonModule": true,                        /* Enable importing .json files */
     // "noResolve": true,                                /* Disallow `import`s, `require`s or `<reference>`s from expanding the number of files TypeScript should add to a project. */
 
   
     /* Emit */
     "sourceMap": true,
-    "outDir": "./static/JS",
+    "outDir": "static/JS",
     "removeComments": true,
 
 
@@ -34,10 +38,8 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "exclude": [
-    "static/node_modules/**/*"
-  ],
+  "exclude": [],
   "include": [
-    "static/TS/**/*"
+    "developing/TS/**/*.ts"
   ]
 }

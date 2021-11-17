@@ -5,20 +5,21 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>movimiento rectilineo uniforme</title>
+
+  <title>Movimiento Rectilineo Uniforme</title>
+
   <link rel="stylesheet" href="css/main.css" />
-  <script src="JS/index.js" type="module"></script>
 </head>
 
 <body>
   <div id="mainGrid">
     <header>
-      <div>
+      <div id="varsButtons"></div>
+      <div id="valsButtons"></div>
+
+      <div id="stateButtons">
         <button id="changeState">Start</button>
-        <input type="number" id="velocity" placeholder="Velocity" value="125" />
-        <input type="number" id="distance" placeholder="Distance" value="500" />
-        <input type="number" id="distanceTraveled" placeholder="Distance traveled" value="0" disabled />
-        <input type="number" id="timeElapsed" placeholder="Time elapsed" value="0" disabled />
+        <button id="reset">Reset</button>
       </div>
     </header>
 
@@ -26,6 +27,8 @@
       <canvas id="canvas"></canvas>
     </main>
   </div>
+
+  <script src="JS/main.js" type="module"></script>
 </body>
 
 </html>
