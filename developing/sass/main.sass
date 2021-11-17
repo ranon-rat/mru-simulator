@@ -1,0 +1,33 @@
+@import _normalize
+
+@import _variables
+@import models/_newGrid
+
+
+::-webkit-scrollbar
+  width: 10px
+
+::-webkit-scrollbar-track
+  background: $secundary_background
+
+::-webkit-scrollbar-thumb
+  background: $scrollbar_thumb_color
+
+*
+  color: $font_color
+  font-size: $font_size
+
+
+html, body
+  background: $primary_background
+  background-color: $primary_background
+
+  max-width: 100vw
+
+
+div#mainGrid
+  @include newGrid(false, 100%, (auto auto), ("header" "main"))
+
+  @import _header
+
+  @import _main

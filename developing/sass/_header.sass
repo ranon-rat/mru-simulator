@@ -1,0 +1,72 @@
+header
+  @include newGrid(header, 100%, auto, ("vars" "vals" "states"))
+
+  background: $secundary_background
+  background-color: $secundary_background
+  border-bottom: solid 1px $primary_border
+
+  min-height: 50px
+
+
+  button
+    background: transparent
+    background-color: transparent
+    border: none
+    border-bottom: solid 1px $primary_border
+    height: 45px
+    padding-left: 10px
+  
+  input[type=number]
+    background: transparent
+    background-color: transparent
+    border: none
+    outline: none
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button
+    -webkit-appearance: none
+
+  @each $id, $area, $withDiv in varsButtons vars true, valsButtons vals true, stateButtons states false
+    div##{$id}
+      @if $withDiv
+        @include newGrid($area, 95%, auto, false)
+
+        justify-content: center
+
+        div.button
+          @include newGrid(false, (70% 30%), 100%, ("type value"))
+
+          border-bottom: solid 1px $primary_border
+          height: 45px
+          padding-left: 10px
+
+          p
+            grid-area: type
+            align-self: center
+          
+          input
+            grid-area: value
+        
+        div.button:hover
+          border-bottom: solid 1px $secundary_border
+
+      @else
+        @include newGrid($area, 95%, (50% 50%), false)
+
+        justify-content: center
+        padding-bottom: 10px
+
+        button:hover
+          border-bottom: solid 1px $secundary_border
+    
+    @media screen and (min-width: 768px)
+      div##{$id}
+        @if $withDiv
+          @include newGrid($area, (47.5% 47.5%), auto, false)
+          
+          column-gap: 10px
+        
+        @else 
+          @include newGrid($area, (47.5% 47.5%), 100%, false)
+
+          column-gap: 10px

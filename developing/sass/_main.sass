@@ -1,0 +1,25 @@
+main
+  @include newGrid(main, 100%, 100%, "canvas")
+
+  align-items: center
+  justify-content: center
+  text-align: center
+  padding-top: 30px
+
+  canvas#canvas
+    grid-area: canvas
+
+    margin: auto
+    height: 280px
+  
+  @media screen and (min-width: 320px)
+    canvas#canvas
+      height: 320px
+
+  @media screen and (min-width: 375px)
+    canvas#canvas
+      height: 375px
+  
+  @media screen and (min-width: 425px)
+    canvas#canvas
+      height: 425px
